@@ -49,4 +49,16 @@ describe('ProblemeComponent', () => {
       let errors = zone.errors || {};
       expect(errors['required']).toBeTruthy();
      });
+     it("#5 | Zone PRÉNOM valide avec 10 espaces", () =>{
+      let zone = component.problemeForm.controls['prenom'];
+      zone.setValue(" ".repeat(10));
+      let errors = zone.errors || {};
+      expect(errors['required']).toBeFalsy();
+     });
+     it("#6 | Zone PRÉNOM valide avec 2 espaces et 1 caractère", () =>{
+      let zone = component.problemeForm.controls['prenom'];
+      zone.setValue("a".repeat(1) + " ".repeat(2));
+      let errors = zone.errors || {};
+      expect(errors['minlength']).toBeFalsy();
+     });
 });
